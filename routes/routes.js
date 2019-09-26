@@ -90,7 +90,7 @@ router.post('/currencies', (req, res) => {
 router.get('/logout', (req, res) =>{
     let cookies = new Cookies(req, res, {keys: cookiekeys});
     cookies.set('LastVisit', {maxAge: Date.now()},{signed: false});
-    res.send('You are logged out');
+    res.send('You are logged out')
 })
 
 

@@ -26,7 +26,7 @@
 
         let currency = JSON.stringify({symbol: symbol, last: last});
         let req = new XMLHttpRequest();
-        req.open('POST', '/currencies', true);
+        req.open('POST', '/currencies', true)
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', () => {
             let recievedCurrency = JSON.parse(req.response);
