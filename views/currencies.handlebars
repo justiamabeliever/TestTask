@@ -3,17 +3,35 @@
     <a href="/currencies">Login</a>
     <a href="/logout">Logout</a>
 </div>
+<form name="currencyForm">
+    <div class="input-group mb-3"  style="width:40%">
+        <select class="custom-select" name="symbol">
+            {{#each currencies as |item| }}
+            <option>
+                {{ item }}
+            </option>
+            {{/each}}
+        </select>
+        <input type="text" class="form-control" name="last" id="textInput" placeholder="Your value..">
+        <input type="submit" value="Sumbit" id="submit">
+    </div>
+</form>
+<script>
+    document.getElementById('submit').addEventListener('click', (e) => {
+        e.preventDefault();
 
-    <form method="POST" action="/currencies">
-        <div class="input-group mb-3"  style="width:40%">
-            <select class="custom-select" name="symbol">
-                {{#each currencies as |item| }}
-                <option>
-                    {{ item }}
-                </option>
-                {{/each}}
-            </select>
-            <input type="text" class="form-control" name="last" id="textInput" placeholder="Your value..">
-            <input type="submit" value="Sumbit" id="btnSubmit">
-        </div>
-    </form>
+        let currencyForm = document.forms['currencyForm'];
+        let symbol = currencyForm.elements['symbol'].value;
+        let last = currencyForm.elements['last'].value;
+
+        let currency = JSON.stringify({symbol: symbol, last: last});
+        let req = new XMLHttpRequest();
+        req.open('POST', '/currencies', true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load', () => {
+            let recievedCurrency = JSON.parse(req.response);
+            console.log(recievedCurrency.symbol, ': ', recievedCurrency.last); //response from server
+        });
+        req.send(currency);
+    });
+</script>

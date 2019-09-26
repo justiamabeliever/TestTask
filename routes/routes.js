@@ -58,11 +58,11 @@ router.get('/currencies', (req, res) => {
 })
 
 router.post('/currencies', (req, res) => {
+    console.log(req.body);
     let cookies = new Cookies(req, res, {keys: cookiekeys});
     let lastVisit = cookies.get('LastVisit', {signed: true});
     
     console.log('Post token:' + lastVisit);
-    console.log('Value: '+req.body.last+';\nSymbol: '+req.body.symbol);
 
     if(!req.body.last) {
         res.send('Enter your currency');
@@ -83,7 +83,7 @@ router.post('/currencies', (req, res) => {
             token: lastVisit
         });
         newUserCurrency.save();
-        res.redirect('/currencies');
+        res.json(req.body);
     }
 })
 
