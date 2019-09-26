@@ -1,0 +1,33 @@
+<div>
+    <a href="/currencies">Profile</a>
+</div>
+{{!-- <ul>
+    {{#each currencies as |item|}}
+    <li>
+        {{!-- <p>{{item}}</p> --}}
+        {{!-- <p>Symbol: {{item.symbol}}</p>
+        <p>Last value: {{item.last}}</p>
+        <p>date: {{item.timestamp}}</p>
+    </li> --}}
+    {{!-- {{/each}}
+</ul> --}}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Last</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        {{#each currencies as |item|}}
+        <tr>
+            <td>{{item.symbol}}</td>
+            <td>{{item.last}}</td>
+            <td>{{item.timestamp}}</td>
+        </tr>
+
+        {{/each}}
+    </tbody>
+</table>

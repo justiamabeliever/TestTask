@@ -1,0 +1,19 @@
+<div>
+    <a href="/">Home</a>
+    <a href="/currencies">Login</a>
+    <a href="/logout">Logout</a>
+</div>
+
+    <form method="POST" action="/currencies">
+        <div class="input-group mb-3"  style="width:40%">
+            <select class="custom-select" name="symbol">
+                {{#each currencies as |item| }}
+                <option>
+                    {{ item }}
+                </option>
+                {{/each}}
+            </select>
+            <input type="text" class="form-control" name="last" id="textInput" placeholder="Your value..">
+            <input type="submit" value="Sumbit" id="btnSubmit">
+        </div>
+    </form>
